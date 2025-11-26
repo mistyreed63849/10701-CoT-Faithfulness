@@ -9,11 +9,13 @@ from tqdm import tqdm
 PROJECT_ID = "my-project-12609"
 REGION = "us-central1"
 ENDPOINT = "https://us-central1-aiplatform.googleapis.com"
-MAX_RETRIES = 5
+MAX_RETRIES = 8
 RETRYABLE_STATUS = {429, 500, 503}
 MODEL = "meta/llama-3.1-8b-instruct-maas"
 
 SYS_PROMPT = "You are an answer extractor. Given a question and a step-by-step reasoning trace, return only the final numeric answer with no explanation or formatting."
+
+MATH_SYS_PROMPT = "You are an answer extractor. Given a question and a step-by-step reasoning trace, return the answer in `\\boxed{$answer}` format."
 
 PROMPT_TEMPLATE = """Question: {question}
 
@@ -52,7 +54,7 @@ def query_vertex_ai(question: str, reasoning: str) -> tuple[bool, str]:
         "temperature": TEMPERATURE,
         "max_tokens": MAX_OUTPUT_TOKENS,
         "messages": [
-            {"role": "system", "content": SYS_PROMPT},
+            {"role": "system", "content": MATH_SYS_PROMPT},
             {"role": "user", "content": make_prompt(question, reasoning)},
         ],
     }
