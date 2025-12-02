@@ -1,12 +1,10 @@
 # 10701-CoT-Faithfulness
 Repo for the Project "Measuring Chain-of-Thought Faithfulness for Thinking LLMs"
 
-## Extractor Step
+- reasoner_inference: Devangi Sharma
 
-With gcloud already logged in, run
-```
-python llama_answer_extractor.py
-```
-to generate `gsm8k_llama_extracted.jsonl`.
+- answer_extractor: Tianjie Zhang
 
-In this file, the field `extracted_answer` contains the answer extracted from Qwen-3’s reasoning.
+- extraction_inspect: Shuaike Shen
+
+- faithfulness_eval_analysis: Jinglan Yang
